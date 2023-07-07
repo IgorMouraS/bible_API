@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API bible</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tangerine:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="js/script.js" defer></script>
+</head>
+
+<body>
+    <header class="hide">
+        <h1>"Mas os que esperam no Senhor renovarão as suas forças; subirão com asas como águias; correrão, e não se
+            cansarão; andarão, e não se fatigarão."
+        </h1>
+        <div class="headerp">
+            <p>Isaías 40:31</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="principal hide">
+            <form>
+                <h1 class="filtro">Filtrar:</h1>
+                <div class="form-inputs">
+                    <div class="form-input">
+                        <label for="books">Livro</label>
+                        <input type="text" name="books" id="books">
+                    </div>
+                    
+                    <div class="form-input">
+                        <label for="abrev">Abreviação</label>
+                        <input type="text" name="abrev" id="abrev">
+                    </div>
+            
+                    <div class="form-input">
+                        <label for="author">Autores</label>
+                        <input type="text" name="author" id="author">
+                    </div>
+
+                    <div class="form-input">
+                        <label for="Group">Grupo</label>
+                        <input type="text" name="Group" id="Group">
+                    </div>
+                </div>
+                <button type="submit" id="submit-filtro">Filtrar</button>
+            </form>
+    
+            <div class="book">
+                <div class="book-title">
+                    <h1 id="book-name">Gênesis</h1>
+                    <p id="book-abrev">gn</p>
+                </div>
+                <div class="book-info">
+                    <div class="book-line">
+                        <p id="book-author">Autor:</p>
+                        <p id="book-author">Moisés</p>
+                    </div>
+                    <div class="book-line">
+                        <p id="book-group">Grupo:</p>
+                        <p id="book-group">Pentateuco</p>
+                    </div>
+                    <div class="book-line">
+                        <p id="book-cap">Cap:</p>
+                        <p id="book-cap">50</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="book-selected-cap hide">
+            <button type="reset">Voltar</button>
+            <form class="book-selected-form">
+                <h1 class="filtro">Filtrar:</h1>
+                <div class="form-inputs">
+                    <div class="form-input">
+                        <label for="cap">Capitulo</label>
+                        <input type="text" name="cap" id="cap">
+                    </div>
+                    <div class="form-input">
+                        <label for="vers">Versículo</label>
+                        <input type="text" name="vers" id="vers">
+                    </div>
+                </div>
+                <button type="submit" id="submit-filtro-cap">Filtrar</button>
+            </form>
+
+            <div class="book-selected-content">
+                <h1 id="book-selected-title">Gênesis</h1>
+                <h2 id="book-selected-cap">1</h2>
+                <p id="book-selected-verses">ytagshkjdk adakf hsdfk adskfj ajdf hadsjh flash dfkjlsh adfjkash dfkjahs
+                    fjkah
+                    sdfjkh asjf asjdfh akjdfh jkash dfjkhdsfkj</p>
+            </div>
+        </section>
+
+        <section class="book-selected-verse ">
+            <button type="reset">Voltar</button>
+            <div class="book-selected-content">
+                <h1 id="book-selected-title">Gênesis</h1>
+                <div class="cap-vers">
+                    <h2 id="book-selected-cap">1:</h2>
+                    <h2 id="book-selected-vers">1</h2>
+                </div>
+                <p id="book-selected-verses">ytagshkjdk adakf hsdfk adskfj ajdf hadsjh flash dfkjlsh adfjkash dfkjahs
+                    fjkah
+                    sdfjkh asjf asjdfh akjdfh jkash dfjkhdsfkj</p>
+            </div>
+        </section>
+
+    </main>
+
+
+</body>
+
+</html>

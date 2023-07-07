@@ -1,0 +1,149 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.hide{
+    display: none;
+}
+
+body{
+    background-color: #f1eaa2;
+    font-family: 'Montserrat', sans-serif;
+    color: #35320d;
+    width: 80vw;
+    padding: 42px 0;
+    margin: 0 auto;
+}
+
+header{
+    font-family: 'Tangerine', handwriting;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 72px;
+}
+
+header h1{
+    font-size: 3rem;
+    margin-bottom: 16px;
+}
+
+header p{
+    font-size: 1.5rem;
+    padding-top: 8px;
+    width: 150px;
+    margin: 0 auto;
+    border-top: thin solid #e4d71e;
+}
+
+form{
+    width: 80%;
+    margin: 0 auto 72px;
+    color: #333;
+}
+
+form .filtro{
+    margin-bottom: 16px;
+    font-size: 1.5rem;
+}
+
+input{
+    padding: 4px 8px;
+    background: transparent;
+    border: none;
+    box-shadow: inset 1px 1px 2px rgba(128, 128, 128, 0.3), 
+    1px 1px 4px rgba(255, 255, 255, 0.5);
+    margin-bottom: 16px;
+}
+
+label{
+    display: block;
+}
+
+form .form-inputs{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+form .input-form{
+    display: block;
+}
+
+form button,
+section button{
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    color: #35320d;
+    background-color: #BDB76B;
+    box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.2), 
+    inset 1px 1px 4px rgba(255, 255, 255, 0.5);
+    transform: scale(1);
+}
+
+form button:hover,
+section button:hover{
+    transform: scale(1.1);
+}
+
+form button:active,
+section button:active{
+    color: #BDB76B;
+    background-color: #35320d;
+}
+
+.principal .book{
+    width: 250px;
+    background-color: #BDB76B;
+    padding: 32px 0;
+    text-align: center;
+    border-radius: 16px;
+    box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.2), 
+    inset 1px 1px 4px rgba(255, 255, 255, 0.5);
+}
+
+
+.book .book-title{
+    margin-bottom: 24px;
+    color: #222009;
+}
+
+.book-info{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 24px;
+}
+
+.book-line{
+    color: #fffbc5;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.book-selected-form .form-inputs{
+    justify-content: inherit;
+    gap: 32px;
+}
+
+.book-selected-content{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+}
+
+section .book-selected-content .cap-vers{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
