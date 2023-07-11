@@ -98,7 +98,16 @@ section button:active{
     background-color: #35320d;
 }
 
+.principal .array-book{
+    display: flex;
+    max-width: 80vw;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 4rem;
+}
+
 .principal .book{
+    cursor: pointer;
     width: 250px;
     background-color: #BDB76B;
     padding: 32px 0;
