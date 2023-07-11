@@ -28,107 +28,129 @@ async function apiBible() {
     console.log(bibliaJson);
 
     arrayBooks(bibliaJson);
+
     filterBook();
     filterAbrev();
     filterAuthor();
     filterGroup();
 
+    clickBook();
+    clickReset();
+
 }
 
-function clickBook(){
-    const book = document.querySelector(".book");
-    book.addEventListener("click", (e) => {
-        console.log("opa");
+function clickReset(){
+    const reset = document.querySelector("[type='reset']");
+    reset.addEventListener("click", () => {
+        const header = document.querySelector("header");
+        const sectionPrincipal = document.querySelector(".principal");
+        const sectionBookSelected = document.querySelector(".book-selected-cap");
+        header.style.display = "block";
+        sectionPrincipal.removeAttribute("class", "hide");
+        sectionBookSelected.style.display = "none";
     })
 }
 
-function filterBook(){
+function clickBook() {
+    const book = document.querySelector(`.book`);
+    book.addEventListener("click", () => {
+        const header = document.querySelector("header");
+        const sectionPrincipal = document.querySelector(".principal");
+        const sectionBookSelected = document.querySelector(".book-selected-cap");
+        header.setAttribute("class", "hide");
+        sectionPrincipal.setAttribute("class", "hide");
+        sectionBookSelected.style.display = "block";
+    })
+
+}
+
+function filterBook() {
     const filterBook = document.querySelector("#books");
     const filterCard = document.querySelectorAll(".book");
-    
+
     filterBook.addEventListener("input", (e) => {
-        if(e.value != ""){
-            for(let book of filterCard){
+        if (e.value != "") {
+            for (let book of filterCard) {
                 let bookTitle = book.querySelector("#book-name");
                 bookTitle = bookTitle.textContent.toLowerCase();
                 let filterBookInput = filterBook.value.toLowerCase();
-                
-                if(!bookTitle.includes(filterBookInput)){
+
+                if (!bookTitle.includes(filterBookInput)) {
                     book.style.display = "none";
-                }else{
+                } else {
                     book.style.display = "block";
                 }
             }
-        }else{
+        } else {
             return true;
         }
     })
 }
 
-function filterAbrev(){
+function filterAbrev() {
     const filterBook = document.querySelector("#abrev");
     const filterCard = document.querySelectorAll(".book");
-    
+
     filterBook.addEventListener("input", (e) => {
-        if(e.value != ""){
-            for(let book of filterCard){
+        if (e.value != "") {
+            for (let book of filterCard) {
                 let bookTitle = book.querySelector("#book-abrev");
                 bookTitle = bookTitle.textContent.toLowerCase();
                 let filterBookInput = filterBook.value.toLowerCase();
-                
-                if(!bookTitle.includes(filterBookInput)){
+
+                if (!bookTitle.includes(filterBookInput)) {
                     book.style.display = "none";
-                }else{
+                } else {
                     book.style.display = "block";
                 }
             }
-        }else{
+        } else {
             return true;
         }
     })
 }
 
-function filterAuthor(){
+function filterAuthor() {
     const filterBook = document.querySelector("#author");
     const filterCard = document.querySelectorAll(".book");
-    
+
     filterBook.addEventListener("input", (e) => {
-        if(e.value != ""){
-            for(let book of filterCard){
+        if (e.value != "") {
+            for (let book of filterCard) {
                 let bookTitle = book.querySelector("#book-author-text");
                 bookTitle = bookTitle.textContent.toLowerCase();
                 let filterBookInput = filterBook.value.toLowerCase();
-                
-                if(!bookTitle.includes(filterBookInput)){
+
+                if (!bookTitle.includes(filterBookInput)) {
                     book.style.display = "none";
-                }else{
+                } else {
                     book.style.display = "block";
                 }
             }
-        }else{
+        } else {
             return true;
         }
     })
 }
 
-function filterGroup(){
+function filterGroup() {
     const filterBook = document.querySelector("#Group");
     const filterCard = document.querySelectorAll(".book");
-    
+
     filterBook.addEventListener("input", (e) => {
-        if(e.value != ""){
-            for(let book of filterCard){
+        if (e.value != "") {
+            for (let book of filterCard) {
                 let bookTitle = book.querySelector("#book-group-text");
                 bookTitle = bookTitle.textContent.toLowerCase();
                 let filterBookInput = filterBook.value.toLowerCase();
-                
-                if(!bookTitle.includes(filterBookInput)){
+
+                if (!bookTitle.includes(filterBookInput)) {
                     book.style.display = "none";
-                }else{
+                } else {
                     book.style.display = "block";
                 }
             }
-        }else{
+        } else {
             return true;
         }
     })
@@ -144,11 +166,11 @@ function arrayBooks(bibliaJson) {
         arrayBook.appendChild(divBook);
 
         const divBookTitle = document.createElement("div");
-        divBookTitle.setAttribute("class", "book-title");
+        divBookTitle.setAttribute("class", `book-title`);
         divBook.appendChild(divBookTitle);
 
-        const idBookTitle = document.createElement("h1");
-        idBookTitle.setAttribute("id", "book-name");
+        const idBookTitle = document.createElement(`h1`);
+        idBookTitle.setAttribute("id", `book-name`);
         idBookTitle.textContent = `${bibliaJson[i].name}`;
         divBookTitle.appendChild(idBookTitle);
 
