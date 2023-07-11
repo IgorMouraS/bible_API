@@ -85,6 +85,7 @@ section button{
     box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.2), 
     inset 1px 1px 4px rgba(255, 255, 255, 0.5);
     transform: scale(1);
+    margin-bottom: 56px;
 }
 
 form button:hover,
@@ -155,4 +156,14 @@ section .book-selected-content .cap-vers{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#book-selected-verses{
+    font-size: 1.2rem;
+    text-align: justify;
+}
+
+#book-selected-number{
+    font-size: 0.5rem;
+    text-align: center;
 }

@@ -17,7 +17,7 @@ async function apiBible() {
     const options = {
         books: "books",
         booksGn: "books/gn",
-        versesCap: "verses/nvi/gn/1",
+        versesCap: "verses/nvi/",
         verses: "verses/nvi/gn/1/1",
     };
 
@@ -33,34 +33,40 @@ async function apiBible() {
     filterAbrev();
     filterAuthor();
     filterGroup();
+    // filterCap();
+    // filterVers();
 
     clickBook();
     clickReset();
 
+    arrayCap();
+
 }
 
-function clickReset(){
+function clickReset() {
     const reset = document.querySelector("[type='reset']");
     reset.addEventListener("click", () => {
         const header = document.querySelector("header");
         const sectionPrincipal = document.querySelector(".principal");
         const sectionBookSelected = document.querySelector(".book-selected-cap");
-        header.style.display = "block";
-        sectionPrincipal.removeAttribute("class", "hide");
-        sectionBookSelected.style.display = "none";
+        header.classList.remove("hide");
+        sectionPrincipal.classList.remove("hide");
+        sectionBookSelected.classList.add("hide");
     })
 }
 
 function clickBook() {
-    const book = document.querySelector(`.book`);
-    book.addEventListener("click", () => {
-        const header = document.querySelector("header");
-        const sectionPrincipal = document.querySelector(".principal");
-        const sectionBookSelected = document.querySelector(".book-selected-cap");
-        header.setAttribute("class", "hide");
-        sectionPrincipal.setAttribute("class", "hide");
-        sectionBookSelected.style.display = "block";
-    })
+    const book = document.querySelectorAll(`.book`);
+    for (b of book) {
+        b.addEventListener("click", () => {
+            const header = document.querySelector("header");
+            const sectionPrincipal = document.querySelector(".principal");
+            const sectionBookSelected = document.querySelector(".book-selected-cap");
+            header.classList.add("hide");
+            sectionPrincipal.classList.add("hide");
+            sectionBookSelected.classList.remove("hide");
+        })
+    }
 
 }
 
@@ -88,17 +94,17 @@ function filterBook() {
 }
 
 function filterAbrev() {
-    const filterBook = document.querySelector("#abrev");
+    const filterAbrev = document.querySelector("#abrev");
     const filterCard = document.querySelectorAll(".book");
 
-    filterBook.addEventListener("input", (e) => {
+    filterAbrev.addEventListener("input", (e) => {
         if (e.value != "") {
             for (let book of filterCard) {
                 let bookTitle = book.querySelector("#book-abrev");
                 bookTitle = bookTitle.textContent.toLowerCase();
-                let filterBookInput = filterBook.value.toLowerCase();
+                let filterAbrevInput = filterAbrev.value.toLowerCase();
 
-                if (!bookTitle.includes(filterBookInput)) {
+                if (!bookTitle.includes(filterAbrevInput)) {
                     book.style.display = "none";
                 } else {
                     book.style.display = "block";
@@ -111,17 +117,17 @@ function filterAbrev() {
 }
 
 function filterAuthor() {
-    const filterBook = document.querySelector("#author");
+    const filterAuthor = document.querySelector("#author");
     const filterCard = document.querySelectorAll(".book");
 
-    filterBook.addEventListener("input", (e) => {
+    filterAuthor.addEventListener("input", (e) => {
         if (e.value != "") {
             for (let book of filterCard) {
                 let bookTitle = book.querySelector("#book-author-text");
                 bookTitle = bookTitle.textContent.toLowerCase();
-                let filterBookInput = filterBook.value.toLowerCase();
+                let filterAuthorInput = filterAuthor.value.toLowerCase();
 
-                if (!bookTitle.includes(filterBookInput)) {
+                if (!bookTitle.includes(filterAuthorInput)) {
                     book.style.display = "none";
                 } else {
                     book.style.display = "block";
@@ -134,17 +140,17 @@ function filterAuthor() {
 }
 
 function filterGroup() {
-    const filterBook = document.querySelector("#Group");
+    const filterGroup = document.querySelector("#Group");
     const filterCard = document.querySelectorAll(".book");
 
-    filterBook.addEventListener("input", (e) => {
+    filterGroup.addEventListener("input", (e) => {
         if (e.value != "") {
             for (let book of filterCard) {
                 let bookTitle = book.querySelector("#book-group-text");
                 bookTitle = bookTitle.textContent.toLowerCase();
-                let filterBookInput = filterBook.value.toLowerCase();
+                let filterGroupInput = filterGroup.value.toLowerCase();
 
-                if (!bookTitle.includes(filterBookInput)) {
+                if (!bookTitle.includes(filterGroupInput)) {
                     book.style.display = "none";
                 } else {
                     book.style.display = "block";
@@ -154,6 +160,92 @@ function filterGroup() {
             return true;
         }
     })
+}
+
+// function filterCap() {
+//     const filterCap = document.querySelector("#cap");
+//     const filterCard = document.querySelectorAll(".book");
+
+//     filterCap.addEventListener("input", (e) => {
+//         if (e.value != "") {
+//             for (let book of filterCard) {
+//                 let bookTitle = book.querySelector("#book-group-text");
+//                 bookTitle = bookTitle.textContent.toLowerCase();
+//                 let filterCapInput = filterCap.value.toLowerCase();
+
+//                 if (!bookTitle.includes(filterCapInput)) {
+//                     book.style.display = "none";
+//                 } else {
+//                     book.style.display = "block";
+//                 }
+//             }
+//         } else {
+//             return true;
+//         }
+//     })
+// }
+
+// function filterVers() {
+//     const filterBook = document.querySelector("#Group");
+//     const filterCard = document.querySelectorAll(".book");
+
+//     filterBook.addEventListener("input", (e) => {
+//         if (e.value != "") {
+//             for (let book of filterCard) {
+//                 let bookTitle = book.querySelector("#book-group-text");
+//                 bookTitle = bookTitle.textContent.toLowerCase();
+//                 let filterBookInput = filterBook.value.toLowerCase();
+
+//                 if (!bookTitle.includes(filterBookInput)) {
+//                     book.style.display = "none";
+//                 } else {
+//                     book.style.display = "block";
+//                 }
+//             }
+//         } else {
+//             return true;
+//         }
+//     })
+// }
+
+async function arrayCap() {
+
+    const bookApi = "gn";
+    const capApi = 1;
+
+    const options = {
+        books: "books",
+        booksGn: "books/gn",
+        versesCap: "verses/nvi/",
+        verses: "verses/nvi/gn/1/1",
+    };
+
+    const bibliaCap = await fetch(url + options.versesCap + bookApi + `/${capApi.toString()}`);
+    const bibliaCapJson = await bibliaCap.json();
+    console.log(bibliaCapJson);
+
+    const bookTitle = document.querySelector("#book-selected-title");
+    const bookCap = document.querySelector("#book-selected-cap");
+
+    bookTitle.textContent = `${bibliaCapJson.book.name}`;
+    bookCap.textContent = `${bibliaCapJson.chapter.number}`;
+
+    for (let i = 0; i < bibliaCapJson.verses.length; i++) {
+        const divBoolSelected = document.querySelector(".book-selected-content")
+
+        const versesNumber = document.createElement("p");
+        const bookVerses = document.createElement("p");
+
+        versesNumber.setAttribute("id", "book-selected-number");
+        bookVerses.setAttribute("id", "book-selected-verses");
+
+        versesNumber.textContent += `${bibliaCapJson.verses[i].number}`;
+        bookVerses.textContent += `${bibliaCapJson.verses[i].text} `;
+
+        divBoolSelected.appendChild(versesNumber);
+        divBoolSelected.appendChild(bookVerses);
+    }
+
 }
 
 function arrayBooks(bibliaJson) {
