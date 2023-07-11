@@ -28,18 +28,18 @@ async function apiBible() {
     console.log(bibliaJson);
 
     arrayBooks(bibliaJson);
-
+    await arrayCap();
+    
     filterBook();
     filterAbrev();
     filterAuthor();
     filterGroup();
     // filterCap();
-    // filterVers();
-
+    filterVers();
+    
     clickBook();
     clickReset();
-
-    arrayCap();
+    
 
 }
 
@@ -185,28 +185,26 @@ function filterGroup() {
 //     })
 // }
 
-// function filterVers() {
-//     const filterBook = document.querySelector("#Group");
-//     const filterCard = document.querySelectorAll(".book");
+function filterVers() {
+    const filterVerse = document.querySelector("#vers");
+    const filterElement = document.querySelectorAll(".book-selected-p");
+    
+    filterVerse.addEventListener("input", (e) => {
+        if(e.value != ""){
+            for(let versiculo of filterElement){
+                let v = versiculo.querySelector("#book-selected-number");
+                v = v.textContent;
+                let inputValue = filterVerse.value;
 
-//     filterBook.addEventListener("input", (e) => {
-//         if (e.value != "") {
-//             for (let book of filterCard) {
-//                 let bookTitle = book.querySelector("#book-group-text");
-//                 bookTitle = bookTitle.textContent.toLowerCase();
-//                 let filterBookInput = filterBook.value.toLowerCase();
-
-//                 if (!bookTitle.includes(filterBookInput)) {
-//                     book.style.display = "none";
-//                 } else {
-//                     book.style.display = "block";
-//                 }
-//             }
-//         } else {
-//             return true;
-//         }
-//     })
-// }
+               if(!v.includes(inputValue)){
+                versiculo.style.display = "none";
+               }else{
+                versiculo.style.display = "block";
+               }
+            }
+        }
+    })
+}
 
 async function arrayCap() {
 
@@ -230,8 +228,12 @@ async function arrayCap() {
     bookTitle.textContent = `${bibliaCapJson.book.name}`;
     bookCap.textContent = `${bibliaCapJson.chapter.number}`;
 
+    const divPai = document.querySelector(".book-selected-text");
+
     for (let i = 0; i < bibliaCapJson.verses.length; i++) {
-        const divBoolSelected = document.querySelector(".book-selected-content")
+        const divBookSelected = document.createElement("div");
+        divBookSelected.setAttribute("class", "book-selected-p");
+        divPai.appendChild(divBookSelected);
 
         const versesNumber = document.createElement("p");
         const bookVerses = document.createElement("p");
@@ -242,8 +244,8 @@ async function arrayCap() {
         versesNumber.textContent += `${bibliaCapJson.verses[i].number}`;
         bookVerses.textContent += `${bibliaCapJson.verses[i].text} `;
 
-        divBoolSelected.appendChild(versesNumber);
-        divBoolSelected.appendChild(bookVerses);
+        divBookSelected.appendChild(versesNumber);
+        divBookSelected.appendChild(bookVerses);
     }
 
 }
