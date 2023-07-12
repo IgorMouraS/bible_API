@@ -1,15 +1,15 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     text-decoration: none;
 }
 
-.hide{
+.hide {
     display: none;
 }
 
-body{
+body {
     background-color: #f1eaa2;
     font-family: 'Montserrat', sans-serif;
     color: #35320d;
@@ -18,7 +18,7 @@ body{
     margin: 0 auto;
 }
 
-header{
+header {
     font-family: 'Tangerine', handwriting;
     display: flex;
     flex-direction: column;
@@ -26,12 +26,12 @@ header{
     margin-bottom: 72px;
 }
 
-header h1{
+header h1 {
     font-size: 3rem;
     margin-bottom: 16px;
 }
 
-header p{
+header p {
     font-size: 1.5rem;
     padding-top: 8px;
     width: 150px;
@@ -39,42 +39,43 @@ header p{
     border-top: thin solid #e4d71e;
 }
 
-form{
+form {
     width: 80%;
     margin: 0 auto 72px;
     color: #333;
 }
 
-form .filtro{
+form .filtro {
     margin-bottom: 16px;
     font-size: 1.5rem;
 }
 
-input{
+input {
     padding: 4px 8px;
     background: transparent;
     border: none;
-    box-shadow: inset 1px 1px 2px rgba(128, 128, 128, 0.3), 
-    1px 1px 4px rgba(255, 255, 255, 0.5);
+    box-shadow: inset 1px 1px 2px rgba(128, 128, 128, 0.3),
+        1px 1px 4px rgba(255, 255, 255, 0.5);
     margin-bottom: 16px;
+    width: 180px;
 }
 
-label{
+label {
     display: block;
 }
 
-form .form-inputs{
+form .form-inputs {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-form .input-form{
+form .input-form {
     display: block;
 }
 
 form button,
-section button{
+section button {
     font-size: 1rem;
     font-weight: bold;
     padding: 8px 16px;
@@ -82,24 +83,24 @@ section button{
     border-radius: 8px;
     color: #35320d;
     background-color: #BDB76B;
-    box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.2), 
-    inset 1px 1px 4px rgba(255, 255, 255, 0.5);
+    box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.2),
+        inset 1px 1px 4px rgba(255, 255, 255, 0.5);
     transform: scale(1);
     margin-bottom: 56px;
 }
 
 form button:hover,
-section button:hover{
+section button:hover {
     transform: scale(1.1);
 }
 
 form button:active,
-section button:active{
+section button:active {
     color: #BDB76B;
     background-color: #35320d;
 }
 
-.principal .array-book{
+.principal .array-book {
     display: flex;
     max-width: 80vw;
     flex-wrap: wrap;
@@ -107,41 +108,41 @@ section button:active{
     gap: 4rem;
 }
 
-.principal .book{
+.principal .book {
     cursor: pointer;
     width: 250px;
     background-color: #BDB76B;
     padding: 32px 0;
     text-align: center;
     border-radius: 16px;
-    box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.2), 
-    inset 1px 1px 4px rgba(255, 255, 255, 0.5);
+    box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.2),
+        inset 1px 1px 4px rgba(255, 255, 255, 0.5);
     transform: scale(1);
 }
 
-.principal .book:hover{
+.principal .book:hover {
     box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.2),
-    2px 2px 6px rgba(255, 255, 255, 0.4);
+        2px 2px 6px rgba(255, 255, 255, 0.4);
 }
 
-.principal .book:active{
+.principal .book:active {
     background-color: #a49f5e
 }
 
 
-.book .book-title{
+.book .book-title {
     margin-bottom: 24px;
     color: #222009;
 }
 
-.book-info{
+.book-info {
     display: flex;
     flex-direction: column;
     gap: 8px;
     padding: 0 24px;
 }
 
-.book-line{
+.book-line {
     color: #fffbc5;
     font-size: 1rem;
     font-weight: 500;
@@ -150,42 +151,130 @@ section button:active{
     justify-content: space-between;
 }
 
-.book-selected-form .form-inputs{
+.book-selected-form .form-inputs {
     justify-content: inherit;
     gap: 32px;
 }
 
-.book-selected-content{
+.book-selected-content {
     text-align: center;
     display: flex;
     flex-direction: column;
     gap: 56px;
 }
 
-section .book-selected-content .cap-vers{
+section .book-selected-content .cap-vers {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#book-selected-verses{
+#book-selected-verses {
     font-size: 1.2rem;
     text-align: justify;
 }
 
-#book-selected-number{
+#book-selected-number {
     font-size: 0.5rem;
 }
 
-.book-selected-text{
+.book-selected-text {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     text-align: justify;
 }
 
-.book-selected-p{
+.book-selected-p {
     display: flex;
     flex-direction: row;
     gap: .2rem;
+}
+
+@media(max-width: 1200px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1.2rem;
+    }
+
+    form .filtro {
+        font-size: 1.2rem;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    input {
+        width: 150px;
+    }
+}
+
+@media(max-width: 800px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    form .filtro {
+        font-size: 1rem;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    input {
+        width: 120px;
+    }
+}
+
+@media(max-width: 720px) {
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+    header p {
+        font-size: .8rem;
+    }
+
+    form .filtro {
+        font-size: .8rem;
+        text-align: center;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    form .form-inputs {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    label{
+        font-size: .8rem;
+    }
+
+    input {
+        width: 200px;
+    }
+    .principal .array-book {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4rem;
+    }
+    .principal .book {
+        width: 250px;
+    }
 }
