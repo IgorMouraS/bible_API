@@ -25,21 +25,17 @@ async function apiBible() {
 
 
     const bibliaJson = await biblia.json();
-    console.log(bibliaJson);
 
     arrayBooks(bibliaJson);
-    await arrayCap();
-    
+
     filterBook();
     filterAbrev();
     filterAuthor();
     filterGroup();
-    // filterCap();
-    filterVers();
-    
-    clickBook();
-    clickReset();
-    
+    filterVers()
+
+    clickBook(bibliaJson);
+
 
 }
 
@@ -52,19 +48,39 @@ function clickReset() {
         header.classList.remove("hide");
         sectionPrincipal.classList.remove("hide");
         sectionBookSelected.classList.add("hide");
+
+        removeVerses();
     })
 }
 
-function clickBook() {
+function removeVerses() {
+    const versesNumber = document.querySelectorAll(".book-selected-p");
+    for (let v of versesNumber) {
+        v.remove();
+    }
+}
+
+function clickBook(bibliaJson) {
     const book = document.querySelectorAll(`.book`);
-    for (b of book) {
-        b.addEventListener("click", () => {
+    for (const [b, i] of book.entries()) {
+        i.addEventListener("click", () => {
             const header = document.querySelector("header");
             const sectionPrincipal = document.querySelector(".principal");
             const sectionBookSelected = document.querySelector(".book-selected-cap");
             header.classList.add("hide");
             sectionPrincipal.classList.add("hide");
             sectionBookSelected.classList.remove("hide");
+
+            for (b; b < book.length; b++) {
+
+                const verseInput = document.querySelector("#vers");
+                verseInput.setAttribute("class", `${bibliaJson[b].abbrev.pt}`)
+
+                break;
+            }
+
+            arrayCap();
+
         })
     }
 
@@ -162,54 +178,48 @@ function filterGroup() {
     })
 }
 
-// function filterCap() {
-//     const filterCap = document.querySelector("#cap");
-//     const filterCard = document.querySelectorAll(".book");
-
-//     filterCap.addEventListener("input", (e) => {
-//         if (e.value != "") {
-//             for (let book of filterCard) {
-//                 let bookTitle = book.querySelector("#book-group-text");
-//                 bookTitle = bookTitle.textContent.toLowerCase();
-//                 let filterCapInput = filterCap.value.toLowerCase();
-
-//                 if (!bookTitle.includes(filterCapInput)) {
-//                     book.style.display = "none";
-//                 } else {
-//                     book.style.display = "block";
-//                 }
-//             }
-//         } else {
-//             return true;
-//         }
-//     })
-// }
-
 function filterVers() {
+
+    const filterBtn = document.querySelector("#submit-filtro-cap");
+
+    filterBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        removeVerses();
+
+        const cap = document.querySelector("#cap");
+        const capValue = cap.value;
+        cap.setAttribute("value", `${capValue}`);
+
+        arrayCap();
+        changeCap();
+
+    })
+
+}
+
+function changeCap() {
     const filterVerse = document.querySelector("#vers");
     const filterElement = document.querySelectorAll(".book-selected-p");
-    
-    filterVerse.addEventListener("input", (e) => {
-        if(e.value != ""){
-            for(let versiculo of filterElement){
-                let v = versiculo.querySelector("#book-selected-number");
-                v = v.textContent;
-                let inputValue = filterVerse.value;
+    console.log(filterElement)
 
-               if(!v.includes(inputValue)){
+    if (filterVerse.value != "") {
+        for (let versiculo of filterElement) {
+            let v = versiculo.querySelector("#book-selected-number");
+            v = v.textContent;
+            let inputValue = filterVerse.value;
+
+            if (v != inputValue) {
                 versiculo.style.display = "none";
-               }else{
+            } else {
                 versiculo.style.display = "block";
-               }
             }
         }
-    })
+    } else {
+    }
 }
 
 async function arrayCap() {
-
-    const bookApi = "gn";
-    const capApi = 1;
 
     const options = {
         books: "books",
@@ -218,9 +228,18 @@ async function arrayCap() {
         verses: "verses/nvi/gn/1/1",
     };
 
-    const bibliaCap = await fetch(url + options.versesCap + bookApi + `/${capApi.toString()}`);
+    const classBookApi = document.querySelector("#vers");
+    const classNameBook = classBookApi.className;
+
+    const valueCapApi = document.querySelector("#cap");
+    const valueNumberCap = valueCapApi.value;
+
+    const bookApi = classNameBook;
+    const capApi = valueNumberCap;
+
+
+    const bibliaCap = await fetch(url + options.versesCap + `${bookApi.toString()}` + `/${capApi}`);
     const bibliaCapJson = await bibliaCap.json();
-    console.log(bibliaCapJson);
 
     const bookTitle = document.querySelector("#book-selected-title");
     const bookCap = document.querySelector("#book-selected-cap");
@@ -248,7 +267,10 @@ async function arrayCap() {
         divBookSelected.appendChild(bookVerses);
     }
 
+    clickReset();
+
 }
+
 
 function arrayBooks(bibliaJson) {
     for (let i = 0; i < bibliaJson.length; i++) {
