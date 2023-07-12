@@ -182,7 +182,7 @@ function filterVers() {
 
     const filterBtn = document.querySelector("#submit-filtro-cap");
 
-    filterBtn.addEventListener("click", (e) => {
+    filterBtn.addEventListener("click", async (e) => {
         e.preventDefault();
 
         removeVerses();
@@ -191,7 +191,7 @@ function filterVers() {
         const capValue = cap.value;
         cap.setAttribute("value", `${capValue}`);
 
-        arrayCap();
+        await arrayCap();
         changeCap();
 
     })
